@@ -7,29 +7,6 @@
 
 import Foundation
 
-enum SampleCondition: Condition {
-    case isWatch
-    case isPhone
-    case notContain(_ samples: [SampleEntity])
-    case sameMinute(baseDate: Date)
-    
-    func isSatisfy(_ sample: SampleEntity) -> Bool {
-        switch self {
-        case .isWatch:
-            return sample.dateSourceProductType == .watch
-        case .isPhone:
-            return sample.dateSourceProductType == .iPhone
-        case let .notContain(samples):
-            return !samples.contains(sample)
-        case let .sameMinute(baseDate):
-            let calendar = Calendar.current
-            let baseDateComponents = calendar.dateComponents([.day, .hour, .minute], from: baseDate)
-            let targetDateComponents = calendar.dateComponents([.day, .hour, .minute], from: sample.startDate)
-
-            return targetDateComponents == baseDateComponents
-        }
-    }
-}
 
 protocol Condition {
     func isSatisfy(_ sample: SampleEntity) -> Bool
@@ -72,19 +49,38 @@ class NotContainCondition: Condition {
     }
 }
 
-class SameMinuteCondition: Condition {
+class SameTimeCondition: Condition {
     private let date: Date
+    private let components: [Calendar.Component]
     
-    init(_ date: Date) {
+    init(_ date: Date, components: [Calendar.Component]) {
         self.date = date
+        self.components = components
     }
     
     func isSatisfy(_ sample: SampleEntity) -> Bool {
         let calendar = Calendar.current
-        let targetDateComponents = calendar.dateComponents([.day, .hour, .minute], from: date)
-        let dateComponents = calendar.dateComponents([.day, .hour, .minute], from: sample.startDate)
+        let targetDateComponents = calendar.dateComponents(Set(components), from: date)
+        let dateComponents = calendar.dateComponents(Set(components), from: sample.startDate)
 
         return dateComponents == targetDateComponents
     }
 }
 
+//class SameTimeCondition: Condition {
+//    private let components: [Calendar.Component]
+//    
+//    init(components: [Calendar.Component], baseDate: SampleEntity) {
+//        self.components = components
+//        self.baseSample = baseDate
+//    }
+//    
+//    func isSatisfy(_ sample: SampleEntity) -> Bool {
+//        let calendar = Calendar.current
+//        let targetDateComponents = calendar.dateComponents(Set(components), from: sample.startDate)
+//        let dateComponents = calendar.dateComponents(Set(components), from: baseSample.startDate)
+//
+//        return dateComponents == targetDateComponents
+//    }
+//}
+//

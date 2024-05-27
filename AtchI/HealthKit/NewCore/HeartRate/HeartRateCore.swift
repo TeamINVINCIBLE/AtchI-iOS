@@ -10,38 +10,13 @@ import Foundation
 class HeartRateCore {
     func getHeartRateBPM(_ samples: [HeartRateEntity])
     -> [Double] {
-        let heartRateByMinute: [[HeartRateEntity]] = GroupingFilter(
-            samples: samples,
-            conditions: [
-                SameMinuteCondition(sample.startDate)
-            ]
-        )
+        let heartRateByMinute: [[HeartRateEntity]] = TimeGroupingFilter(
+            [.hour, .minute]
+        ).filter(samples)
+            .map { $0 as! [HeartRateEntity] }
         
         return heartRateByMinute
             .map { HeartRateCalculator($0).calculateAverage() }
-    }
-    
-    private func groupByMinute(
-        _ samples: [HeartRateEntity]
-    ) -> [[HeartRateEntity]] {
-        return samples
-            .sorted { $0.startDate < $1.startDate }
-            .reduce(into: [[HeartRateEntity]]()) { (result, sample) in
-                guard let lastGroup = result.last else {
-                    result.append([sample])
-                    return
-                }
-
-                let filtered = SampleFilter(
-                    conditions: [
-                        NotContainCondition(lastGroup),
-                        SameMinuteCondition(sample.startDate)
-                    ]
-                ).filter(samples)
-                    .map { $0 as! HeartRateEntity }
-                
-                result.append(filtered)
-            }
     }
     
     

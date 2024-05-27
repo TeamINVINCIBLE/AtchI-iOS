@@ -15,8 +15,7 @@ class SleepCore {
         let sleepSamples = AlternativeSampleFilter(
             preConditions: [IsWatchCondition(), SleepTypeCondition(sleepType)],
             alternativeConditions: [SleepTypeCondition(.inbed)]
-        ).filter(samples)
-            .map { $0 as! SleepEntity }
+        ).filter(samples).map { $0 as! SleepEntity }
         
         return SleepCalculator(sleepSamples).calculateSum()
     }

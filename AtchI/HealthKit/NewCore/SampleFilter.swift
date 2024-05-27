@@ -7,46 +7,20 @@
 
 import Foundation
 
-extension Array where Element: SampleEntity {
-    func filter(with conditions: [SampleCondition]) -> [Element] {
-        return self.filter { sample in
-            conditions.allSatisfy { condition in
-                condition.isSatisfy(sample)
-            }
-        }
-    }
+protocol Filter {
+    func filter(_ samples: [SampleEntity]) -> [SampleEntity]
+}
+
+protocol SingleFilter {
+    func filter(_ samples: [SampleEntity]) -> SampleEntity
+}
+
+protocol GroupingFilter {
+    func filter(_ samples: [SampleEntity]) -> [[SampleEntity]]
 }
 
 
-
-extension Array where Element: SampleEntity {
-    func filter(with preConditions: [Condition], alternativeConditions: [Condition]) -> [Element] {
-        let preConditionSatisfy = self.filter { sample in
-            preConditions.allSatisfy { condition in
-                condition.isSatisfy(sample)
-            }
-        }
-        if preConditionSatisfy.isEmpty {
-            return self.filter { sample in
-                alternativeConditions.allSatisfy { condition in
-                    condition.isSatisfy(sample)
-                }
-            }
-        } else {
-            return preConditionSatisfy
-        }
-    }
-}
-
-//protocol Filter {
-//    func filter(_ samples: [SampleEntity]) -> [SampleEntity]
-//}
-//
-//protocol SingleFilter {
-//    func filter(_ samples: [SampleEntity]) -> SampleEntity
-//}
-
-class SampleFilter {
+class SampleFilter: Filter {
     private let conditions: [Condition]
     
     init(conditions: [Condition]) {
@@ -62,7 +36,7 @@ class SampleFilter {
     }
 }
 
-class AlternativeSampleFilter {
+class AlternativeSampleFilter: Filter {
     private let preConditions: [Condition]
     private let alternativeConditions: [Condition]
     
@@ -89,7 +63,7 @@ class AlternativeSampleFilter {
     }
 }
 
-class IndexSampleFilter {
+class IndexSampleFilter: SingleFilter {
     private let index: Int
     
     init(_ index: Int) {
@@ -98,36 +72,38 @@ class IndexSampleFilter {
     
     func filter(_ samples: [SampleEntity]) -> SampleEntity {
         guard index >= 0 && index < samples.count else {
-            fatalError("올바른 수면 데이터가 아닙니다")
+            fatalError("올바른 데이터가 아닙니다")
         }
         let sortedSamples = samples.sorted { $0.startDate < $1.startDate }
         return sortedSamples[index]
     }
 }
 
-class GroupingFilter {
-    private let samples: [SampleEntity]
-    private let conditions: [Condition]
+class TimeGroupingFilter: GroupingFilter {
+    private let timeComponent: [Calendar.Component]
     
-    init(samples: [SampleEntity], conditions: [Condition]) {
-        self.samples = samples
-        self.conditions = conditions
+    init(_ timeComponent: [Calendar.Component]) {
+        self.timeComponent = timeComponent
     }
     
     func filter(_ samples: [SampleEntity]) -> [[SampleEntity]] {
         return samples
             .sorted { $0.startDate < $1.startDate }
-            .reduce(into: [[SampleEntity]]()) { (result, sample) in
+            .reduce(into: [[HeartRateEntity]]()) { (result, sample) in
                 guard let lastGroup = result.last else {
                     result.append([sample])
                     return
                 }
 
                 let filtered = SampleFilter(
-                    conditions: [NotContainCondition(lastGroup)] + conditions
+                    conditions: [
+                        NotContainCondition(lastGroup),
+                        SameTimeCondition(sample.startDate, components: timeComponent)
+                    ]
                 ).filter(samples)
                 
                 result.append(filtered)
             }
     }
+
 }

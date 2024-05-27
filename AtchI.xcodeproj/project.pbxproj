@@ -146,6 +146,9 @@
 		BC4BBFD829D5F4A500E67B8E /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC88B57229D5F47C003CA752 /* Combine.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BC4E1EBB29C2333600915AB6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E1EBA29C2333600915AB6 /* SignupView.swift */; };
 		BC4E1EBD29C2346000915AB6 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E1EBC29C2346000915AB6 /* IntroView.swift */; };
+		BC5035CB2C00A187005FF367 /* Filter+FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5035CA2C00A187005FF367 /* Filter+FP.swift */; };
+		BC5035CD2C00A196005FF367 /* Condition+FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5035CC2C00A196005FF367 /* Condition+FP.swift */; };
+		BC5035D02C00C0D8005FF367 /* NewNewSleepCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5035CF2C00C0D8005FF367 /* NewNewSleepCore.swift */; };
 		BC53DA3E2A8F741F00F35698 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC53DA3D2A8F741F00F35698 /* UINavigationController+Extension.swift */; };
 		BC54288429EACDAE0026C175 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54288329EACDAE0026C175 /* XCTestCaseExtension.swift */; };
 		BC5A82D82A0CFB3D002EB661 /* HKSleepServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5A82D72A0CFB3D002EB661 /* HKSleepServiceTests.swift */; };
@@ -266,7 +269,7 @@
 		BCF6DA3C29C42D3200E1ACBF /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF6DA3B29C42D3200E1ACBF /* RoundedCorner.swift */; };
 		BCF6DA3E29C4344F00E1ACBF /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF6DA3D29C4344F00E1ACBF /* RoundedButton.swift */; };
 		BCFA27532BFDD2ED0012F78F /* SleepCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA27522BFDD2ED0012F78F /* SleepCalculator.swift */; };
-		BCFA27572BFDEED60012F78F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA27562BFDEED60012F78F /* Filter.swift */; };
+		BCFA27572BFDEED60012F78F /* SampleFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA27562BFDEED60012F78F /* SampleFilter.swift */; };
 		BCFA27592BFDEEFD0012F78F /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA27582BFDEEFD0012F78F /* Condition.swift */; };
 		BCFA275C2BFDEF4C0012F78F /* SleepCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA275B2BFDEF4C0012F78F /* SleepCore.swift */; };
 		BCFA275E2BFDEF5F0012F78F /* SleepEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA275D2BFDEF5F0012F78F /* SleepEntity.swift */; };
@@ -444,6 +447,9 @@
 		BC4DD6A429DDD574000C5DE1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BC4E1EBA29C2333600915AB6 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		BC4E1EBC29C2346000915AB6 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		BC5035CA2C00A187005FF367 /* Filter+FP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filter+FP.swift"; sourceTree = "<group>"; };
+		BC5035CC2C00A196005FF367 /* Condition+FP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+FP.swift"; sourceTree = "<group>"; };
+		BC5035CF2C00C0D8005FF367 /* NewNewSleepCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNewSleepCore.swift; sourceTree = "<group>"; };
 		BC53DA3D2A8F741F00F35698 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		BC54287F29EA84FC0026C175 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		BC54288329EACDAE0026C175 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
@@ -564,7 +570,7 @@
 		BCF6DA3B29C42D3200E1ACBF /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		BCF6DA3D29C4344F00E1ACBF /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		BCFA27522BFDD2ED0012F78F /* SleepCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCalculator.swift; sourceTree = "<group>"; };
-		BCFA27562BFDEED60012F78F /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		BCFA27562BFDEED60012F78F /* SampleFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleFilter.swift; sourceTree = "<group>"; };
 		BCFA27582BFDEEFD0012F78F /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		BCFA275B2BFDEF4C0012F78F /* SleepCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCore.swift; sourceTree = "<group>"; };
 		BCFA275D2BFDEF5F0012F78F /* SleepEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepEntity.swift; sourceTree = "<group>"; };
@@ -1240,6 +1246,14 @@
 			path = Resuable;
 			sourceTree = "<group>";
 		};
+		BC5035CE2C00C0C4005FF367 /* NewNewCore */ = {
+			isa = PBXGroup;
+			children = (
+				BC5035CF2C00C0D8005FF367 /* NewNewSleepCore.swift */,
+			);
+			path = NewNewCore;
+			sourceTree = "<group>";
+		};
 		BC54288229EACD950026C175 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1314,7 @@
 		BC6F0F6229EFAE3A00F3FBD1 /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				BC5035CE2C00C0C4005FF367 /* NewNewCore */,
 				BCFA275A2BFDEF160012F78F /* NewCore */,
 				BC1DDB3C2A34CDF40011B4BC /* Util */,
 				BC1DDB1D2A3235A90011B4BC /* Core */,
@@ -2025,9 +2040,11 @@
 				BCFA27632BFDFD680012F78F /* HeartRate */,
 				BCFA27622BFDFCFB0012F78F /* Activity */,
 				BCFA27612BFDF2210012F78F /* Sleep */,
-				BCFA27562BFDEED60012F78F /* Filter.swift */,
+				BCFA27562BFDEED60012F78F /* SampleFilter.swift */,
 				BCFA27582BFDEEFD0012F78F /* Condition.swift */,
 				BCFA275F2BFDF20F0012F78F /* SampleEntity.swift */,
+				BC5035CA2C00A187005FF367 /* Filter+FP.swift */,
+				BC5035CC2C00A196005FF367 /* Condition+FP.swift */,
 			);
 			path = NewCore;
 			sourceTree = "<group>";
@@ -2302,6 +2319,7 @@
 				BC77192D2A0F856E00F692C6 /* Publishers+Extension.swift in Sources */,
 				BC38FBF82A1CB7F7005F172B /* ReplyAnswerInput.swift in Sources */,
 				049ADEC729CFF3B7009B9B62 /* SelfTestViewModel.swift in Sources */,
+				BC5035CB2C00A187005FF367 /* Filter+FP.swift in Sources */,
 				042F6A9029D1AAF700093B64 /* DiagnosisViewStack.swift in Sources */,
 				6F06DB5F29FD3D7700770596 /* QQQUiz.swift in Sources */,
 				BCF6B8B82A03BBD400B0FC1D /* DateHelperType.swift in Sources */,
@@ -2442,6 +2460,7 @@
 				BCDDE0BD29BDE613003E364C /* HomeView.swift in Sources */,
 				BCE394B129BEF90400FEE178 /* ShortcutCards.swift in Sources */,
 				BCE7439E2A28C2680073914B /* DementiaArticleModel.swift in Sources */,
+				BC5035D02C00C0D8005FF367 /* NewNewSleepCore.swift in Sources */,
 				BC88B80329EA535000F484AF /* AccountServiceType.swift in Sources */,
 				BCDACF4129FF930A00EFF2ED /* DiagnosisService.swift in Sources */,
 				BC3CA1AD29BF704A00C8AE3D /* DementiaAricleCard.swift in Sources */,
@@ -2477,7 +2496,7 @@
 				BC2E1F612A137CE000B4E713 /* PushNotificationHelper.swift in Sources */,
 				BC1DDB422A34D5E90011B4BC /* HKHeartRateCore.swift in Sources */,
 				BC2E1F632A138A8900B4E713 /* AppDelegate.swift in Sources */,
-				BCFA27572BFDEED60012F78F /* Filter.swift in Sources */,
+				BCFA27572BFDEED60012F78F /* SampleFilter.swift in Sources */,
 				BC0446BB29FC1A95002109A2 /* SignupRequestViewModelType.swift in Sources */,
 				BC482D342A25F4960091787D /* MMSEResultStack.swift in Sources */,
 				BC3DDF6B29FB9BD200452A2B /* SignupRequestViewModel.swift in Sources */,
@@ -2490,6 +2509,7 @@
 				BC7650E42A2FB7D1005F306E /* QuizLink.swift in Sources */,
 				BCFA27602BFDF2100012F78F /* SampleEntity.swift in Sources */,
 				BCF6B8A82A027CFC00B0FC1D /* LifePatternService.swift in Sources */,
+				BC5035CD2C00A196005FF367 /* Condition+FP.swift in Sources */,
 				BCA1486229D5F1BD001F390D /* SignupViewModel.swift in Sources */,
 				BC1DDB3E2A34CE010011B4BC /* HKCategoryValueSleepAnalysis+Extension.swift in Sources */,
 				BCF6DA3C29C42D3200E1ACBF /* RoundedCorner.swift in Sources */,
